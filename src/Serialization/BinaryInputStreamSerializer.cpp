@@ -41,9 +41,10 @@ void BinaryInputStreamSerializer::endObject() {
 bool BinaryInputStreamSerializer::beginArray(size_t& size, common::StringView name) {
   readVarintAs<uint64_t>(stream, size);
 
-  if (size > 128*1024*1024) {
-    throw std::runtime_error("array size is too big");
-  }
+// # removing limits - related to cloud issues #
+// if (size > 128*1024*1024) {
+//  throw std::runtime_error("array size is too big");
+//  }
 
   return true;
 }
